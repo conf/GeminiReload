@@ -1,0 +1,21 @@
+@font-face {
+    font-family: "NimbusSansNovusCondDRegular";
+    src: url("../fonts/urw_-_nimbussannovcond-reg-webfont.eot");
+    src: url("../fonts/urw_-_nimbussannovcond-reg-webfont.eot?#iefix") format("embedded-opentype"),
+    url("../fonts/urw_-_nimbussannovcond-reg-webfont.woff") format("woff"),
+    url("../fonts/urw_-_nimbussannovcond-reg-webfont.ttf") format("truetype"),
+    url("../fonts/urw_-_nimbussannovcond-reg-webfont.svg#NimbusSansNovusCondDRegular") format("svg");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "NimbusSansNovusCondDBold";
+    src: url("../fonts/urw_-_nimbussannovcond-bol-webfont.eot");
+    src: url("../fonts/urw_-_nimbussannovcond-bol-webfont.eot?#iefix") format("embedded-opentype"),
+    url("../fonts/urw_-_nimbussannovcond-bol-webfont.woff") format("woff"),
+    url("../fonts/urw_-_nimbussannovcond-bol-webfont.ttf") format("truetype"),
+    url("../fonts/urw_-_nimbussannovcond-bol-webfont.svg#NimbusSansNovusCondDBold") format("svg");
+    font-weight: normal;
+    font-style: normal;
+}

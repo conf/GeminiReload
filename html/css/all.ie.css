@@ -1,0 +1,39 @@
+.ie7 .b-input_type_button {
+    position: relative;
+    top: 1px;
+    min-width: 75px;
+    filter:chroma(color=#000000);
+}
+
+.ie7 .h-unit, .ie7 .b-icon {
+    display:inline !important;
+    zoom:1;
+}
+
+.ie7 .b-input_type_text_grid_one_to_three {
+    width: 20px;
+}
+
+.ie8 .b-input_type_text_grid_one_to_three {
+    width: 27px;
+}
+
+.b-input_type_text_grid_one_to_three {
+    width: 23px;
+}
+
+.ie7 .b-input_type_text_grid_one_to_four {
+    width: 43px;
+}
+
+.ie8 .b-input_type_text_grid_one_to_four {
+    width: 29px;
+}
+
+.b-input_type_text_grid_one_to_four {
+    width: 42px;
+}
+
+.ie7 .b-projects__gallery__navigation {
+    top: 30px;
+}

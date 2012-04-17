@@ -1,0 +1,20 @@
+.b-fav-tasks__item {
+    padding: 12px 20px;
+    list-style-type: none;
+    border-bottom: 1px solid #ccc;
+    background: #fcfcfc;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.b-fav-tasks__item:FIRST-CHILD {
+    border-top: 1px solid #ccc;
+}
+
+.b-fav-tasks__item:HOVER {
+    background: #fffbe3;
+}
+
+.b-fav-tasks__item:HOVER .b-fav-tasks__controls {
+    opacity: 1;
+}

@@ -1,0 +1,8 @@
+.b-add-to-fav {
+    display: block;
+    margin: 15px 0 15px 15px;
+    text-transform: uppercase;
+    color: #ff7e00;
+    text-decoration: underline;
+    font-size: 11px;
+}

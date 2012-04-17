@@ -1,0 +1,11 @@
+.b-fav-tasks__item_state_current {
+    background: #eeecdd;
+}
+
+.b-fav-tasks__item_state_current:HOVER {
+    background: #eeecdd;
+}
+
+.b-fav-tasks__item_state_current .b-fav-tasks__controls {
+    opacity: 1;
+}

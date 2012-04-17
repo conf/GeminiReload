@@ -1,0 +1,7 @@
+.b-icon_type_logout {
+    background-position: 0 0;
+}
+
+.b-icon_type_logout:HOVER {
+    background-position: 0 -20px;
+}

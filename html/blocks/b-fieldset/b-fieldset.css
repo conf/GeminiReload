@@ -1,0 +1,13 @@
+.b-fieldset {
+    position: relative;
+    float: left;
+    margin: 0 10px 0 0;
+    width: 350px;
+}
+
+.b-fieldset LABEL {
+    display: block;
+    margin: 0 0 10px 15px;
+    color: #777;
+    font: normal 14px/18px Myriad Pro, Arial, Tahoma, sans-serif;
+}
