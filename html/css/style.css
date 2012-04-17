@@ -417,6 +417,11 @@ BODY SPAN.skype_pnh_container { display:none !important;}
     font-size: 11px;
 }
 
+/* ../blocks/b-any/b-any.css */
+.b-any.css {
+	
+}
+
 /* ../blocks/b-auth/b-auth.css */
 .b-auth {
     overflow: hidden;
