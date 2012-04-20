@@ -1,15 +1,4 @@
 .b-fieldset__controls {
-    position: relative;
-    width: 105px;
-}
-
-.b-fieldset__controls .b-log-time {
-    display: block;
-    margin: 35px 0 0 25px;
-}
-
-.b-fieldset__controls .b-icon_type_loading {
-    position: absolute;
-    top: 39px;
-    left: 0;
+    width: 130px;
+    padding: 37px 0 0;
 }

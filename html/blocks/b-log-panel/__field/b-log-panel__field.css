@@ -1,0 +1,14 @@
+.b-log-panel__field {
+    margin: 0 0 10px;
+}
+
+.b-log-panel__field INPUT {
+    padding: 7px;
+    border: 1px solid #ccc;
+    font: inherit;
+    width: 183px;
+}
+
+.b-log-panel__field INPUT:FOCUS {
+    border: 1px solid #999;
+}

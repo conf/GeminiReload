@@ -1,5 +1,7 @@
 .b-icon_type_logout {
     background-position: 0 0;
+    width: 20px;
+    height: 20px;
 }
 
 .b-icon_type_logout:HOVER {

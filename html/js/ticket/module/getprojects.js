@@ -1,59 +1,91 @@
-// Provide module namespace
-core.provide("ticket.module.GetProjects")
+/**
+ * Class ticket.module.GetProjects
+ * @constructor
+ */
+ticket.module.GetProjects = function () {
 
-// Require files for ticket.module.GetProjects class
-core.require(
+    // Manipulation with container
+    this.container = $('div[data-item-module="ticket.module.GetProjects"]');
+    this.select = this.container.find('select');
+    this.loader = this.container.find('.b-icon_type_loading');
 
-    // List of files
-    'js/jquery/jquery.js',
-    'js/jquery/plugins/jquery.mousewheel.js',
-    'js/jquery/plugins/jquery.scrollpane.js',
-    'js/jquery/plugins/bfm/jquery.select.js',
+}
 
-    // Initialiaze callback function without files load
-    function() {
+/**
+ * Class ticket.module.GetProjects
+ * @constructor
+ */
+ticket.module.GetProjects.prototype.init = function () {
+    this.initUISelect();
+    this.showLoader();
+    this.select.change($.proxy(this, 'onUISelectChange'))
+    ticket.App.CLASS.getProjectsData($.proxy(this, 'buildUISelect'));
+}
 
-        /**
-         * Class ticket.module.GetProjects
-         * @constructor
-         */
-        ticket.module.GetProjects = function() {
+/**
+ * buildUISelect
+ */
+ticket.module.GetProjects.prototype.buildUISelect = function (data) {
+    this.clearOptionFormUISelect();
+    $.each(data, $.proxy(this, 'updateUISelect'));
+    this.initUISelect();
+    this.onUISelectChange();
+}
 
-            // Manipulation with container
-            this.container = $('div[data-core-module="ticket.module.GetProjects"]');
+/**
+ * updateUISelect
+ */
+ticket.module.GetProjects.prototype.updateUISelect = function (index, option) {
+    $('<option value="' + option.id + '">' + option.title + '</option>').appendTo(this.select)
+}
 
-            // Init getAllProjects
-            this.getAllProjects();
+/**
+ * clearOptionFormUISelect
+ */
+ticket.module.GetProjects.prototype.clearOptionFormUISelect = function () {
+    this.select.find('option').remove();
+}
 
+/**
+ * initUISelect
+ */
+ticket.module.GetProjects.prototype.onUISelectChange = function () {
+    ticket.App.CLASS.getTasksDataByProjectsID(this.select.val(), function (data) {
+        ticket.module.GetTasks.CLASS.init();
+        ticket.module.GetTasks.CLASS.buildUISelect(data)
+    })
+}
+
+/**
+ * initUISelect
+ */
+ticket.module.GetProjects.prototype.initUISelect = function () {
+    this.select.UISelect('destroy');
+    this.select.UISelect(
+        {
+            jScrollPane: {
+                initialize:true,
+                options:   { showArrows:false }
+            },
+            appendToBody:true
         }
+    );
+    this.hideLoader();
+}
 
-        /**
-         * getAllProjects
-         */
-        ticket.module.GetProjects.prototype.getAllProjects = function() {
-            $.getJSON(APP_PATH+'projects.json', $.proxy(this, 'onGetAllProjects'))
-        }
+/**
+ * showLoader
+ */
+ticket.module.GetProjects.prototype.showLoader = function () {
+    this.loader.css({'opacity':'1'})
+}
 
-        /**
-         * getAllProjects
-         */
-        ticket.module.GetProjects.prototype.onGetAllProjects = function(__data) {
+/**
+ * hideLoader
+ */
+ticket.module.GetProjects.prototype.hideLoader = function () {
+    this.loader.css({'opacity':'0'})
+}
 
-            this.container.removeClass('hidden');
-            //console.log(__data)
-            // Initialiaze UISelect plugin
-            this.container.find('select').UISelect(
-                {
-                    jScrollPane: {
-                        initialize : true,
-                        options : { showArrows: false }
-                    },
-                    appendToBody : true
-                }
-            );
-        }
 
-        // Initialiaze instance of ticket.module.GetProjects class
-        new ticket.module.GetProjects;
-    }
-);
+

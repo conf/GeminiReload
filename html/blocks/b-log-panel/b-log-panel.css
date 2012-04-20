@@ -1,0 +1,58 @@
+.b-log-panel {
+    position: absolute;
+    top: 400px;
+    left: 900px;
+}
+
+.ui-datepicker-header  {
+    position: relative;
+    text-align: center;
+    margin: 0 0 5px;
+}
+
+.ui-datepicker-prev {
+    position: absolute;
+    left: 8px;
+    top: 0;
+    cursor: pointer;
+}
+
+.ui-datepicker-next {
+    position: absolute;
+    right: 8px;
+    top: 0;
+    cursor: pointer;
+}
+
+.ui-datepicker-calendar {
+    margin: 0 0 5px;
+    width: 100%;
+}
+
+.ui-datepicker-calendar TH {
+    padding: 0 0 5px;
+}
+
+.ui-datepicker-calendar TD {
+    padding: 3px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.ui-datepicker-current-day {
+    background: #333;
+    color: #fff;
+}
+
+.ui-datepicker-current-day A {
+    color: #fff;
+}
+
+.ui-datepicker-today {
+    background: #777;
+    color: #333;
+}
+
+.ui-datepicker-today A {
+    color: #fff;
+}

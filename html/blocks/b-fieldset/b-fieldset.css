@@ -11,3 +11,13 @@
     color: #777;
     font: normal 14px/18px Myriad Pro, Arial, Tahoma, sans-serif;
 }
+
+.b-fieldset SELECT {
+    position: absolute; left: -10000px;
+}
+
+.b-fieldset SELECT {
+    position: absolute; left: -10000px;
+}
+
+
