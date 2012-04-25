@@ -1,10 +1,17 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
-class Controller_Welcome extends Controller {
+class Controller_Welcome extends Controller_Template {
+
+    public $template = 'index';
 
 	public function action_index()
 	{
-		$this->response->body('hello, world!');
+        $credentials = array(
+            'login' => 'login',
+            'apikey' => 'api'
+        );
+        $factory = new Model_Gemini_Factory('http://tickets.bluefountainmedia.com', $credentials);
+//        $factory->createProject()->getAll();
 	}
 
 } // End Welcome

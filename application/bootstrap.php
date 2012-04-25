@@ -116,3 +116,5 @@ Route::set('default', '(<controller>(/<action>(/<id>)))')
 		'controller' => 'welcome',
 		'action'     => 'index',
 	));
+
+require_once APPPATH . '/vendor/guzzle.phar';
