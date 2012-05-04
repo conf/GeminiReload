@@ -11,7 +11,7 @@ class Controller_Main extends Controller_Template {
             'apikey' => 'api'
         );
         $factory = new Model_Gemini_Factory('http://tickets.bluefountainmedia.com', $credentials);
-//        var_dump($factory->getProjects());
+
 	}
 
 	public function action_logout()
