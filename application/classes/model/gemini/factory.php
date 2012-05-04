@@ -27,6 +27,17 @@ class Model_Gemini_Factory extends Model
         return new Model_Gemini_Project($this->_getGuzzleClient());
     }
 
+	public function getProjects()
+	{
+		$gemini_projects = json_decode($this->_getGuzzleClient()->get('projects.ashx/projects?format=json')->send()->getBody(), true);
+		$projects = array();
+		foreach ($gemini_projects as $item) {
+			$projects[$item['ProjectID']] = $item;
+		}
+
+		return $projects;
+	}
+
     protected function _getGuzzleClient()
     {
         if (!$this->_client)

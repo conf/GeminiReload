@@ -1,14 +1,4 @@
-<!doctype html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>tickets</title>
-    <link rel="stylesheet" href="css">
-    <link rel="stylesheet" href="css/all.css">
-    <link rel="shortcut icon" href="favicon.ico">
-</head>
-<body>
+<?php echo Kohana_View::factory('header'); ?>
 <div class="b-wrapper" data-core-module="ticket.App">
 <div class="b-auth">
     <div class="b-auth__logout">
@@ -273,6 +263,4 @@
 <!-- b-tasks -->
 </div>
 <!-- b-wrapper -->
-<script src="js/core.js"></script>
-</body>
-</html>
+<?php echo Kohana_View::factory('footer'); ?>
