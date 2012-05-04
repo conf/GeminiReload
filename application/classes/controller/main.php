@@ -6,6 +6,11 @@ class Controller_Main extends Controller_Template {
     
     private $_factory;
     
+    public function before()
+    {
+    	parent::before();
+    	$this->session = Session::instance();
+    }
 	
     public function action_index()
 	{
@@ -19,7 +24,23 @@ class Controller_Main extends Controller_Template {
 	{
 		if(!$this->_isLogin() && $this->request->post('username') && $this->request->post('apikey'))
 		{
-			$this->session = Session::instance();
+			try {
+				$credentials = array(
+		            'login'		=> $this->request->post('username'),
+		            'apikey'	=> $this->request->post('apikey')
+		        );
+		        
+		        $factory = new Model_Gemini_Factory('http://tickets.bluefountainmedia.com', $credentials);
+		        if(!$factory->getUser())
+		        {
+		        	throw new Exception('Wrong Username or ApiKey');
+		        }
+			}
+			catch (Exception $e)
+			{
+				$this->request->redirect('/');
+			}
+			
 			$this->session->set('username', $this->request->post('username'));
 			$this->session->set('apikey', $this->request->post('apikey'));
 			$this->session->set('is_login', true);
@@ -30,7 +51,7 @@ class Controller_Main extends Controller_Template {
 
 	public function action_logout()
 	{
-		Session::instance()->destroy();
+		$this->session->destroy();
 		$this->request->redirect('/');
 	}
 	
@@ -38,9 +59,6 @@ class Controller_Main extends Controller_Template {
 	{
 		if($this->_factory)
 			return $this->_factory;
-			
-		
-		$this->session = Session::instance();
 			
 		$credentials = array(
             'login'		=> $this->session->get('username'),
@@ -53,6 +71,6 @@ class Controller_Main extends Controller_Template {
 	
 	private function _isLogin()
 	{
-		return Session::instance()->get('is_login', false);
+		return $this->session->get('is_login', false);
 	}
 }
