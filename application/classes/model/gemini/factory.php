@@ -57,10 +57,16 @@ class Model_Gemini_Factory extends Model
     
     public function getUser()
 	{
-		$user = json_decode($this->_getGuzzleClient()->get('users.ashx/users/username/' . $this->_credentials['login'] . '?format=json')->send()->getBody(), true);
-		
-		if(is_null($user))
+		try {
+			$user = json_decode($this->_getGuzzleClient()->get('users.ashx/users/username/' . $this->_credentials['login'] . '?format=json')->send()->getBody(), true);
+			
+			if(is_null($user))
+				throw new Exception('Undefined User');
+		}
+		catch (Exception $e)
+		{
 			return false;
+		}
 			
 		return (object) array(
 			'user_id'	=> $user['UserID'],
