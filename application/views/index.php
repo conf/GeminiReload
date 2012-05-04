@@ -1,10 +1,20 @@
 <?php echo Kohana_View::factory('header'); ?>
 <div class="b-wrapper" data-core-module="ticket.App">
 <div class="b-auth">
+<?php if(Session::instance()->get('is_login', false)): ?>
     <div class="b-auth__logout">
-        <span class="b-auth__user">Hello, Alex Shein</span>
-        <a class="b-icon b-icon_type_logout" href="#/logout/">Logout</a>
+        <span class="b-auth__user">Hello, <?php echo $user->fullname?></span>
+        <a class="b-icon b-icon_type_logout" href="/logout/">Logout</a>
     </div>
+<?php else:?>
+	<div class="b-auth__logout">
+        <form method="POST" action="/login">
+        	<input type="text" name="username">
+        	<input type="text" name="apikey">
+        	<input type="submit" value="LogIn">
+        </form>
+    </div>
+<?php endif;?>
 </div>
 <!-- b-auth -->
 <div class="b-timeline">

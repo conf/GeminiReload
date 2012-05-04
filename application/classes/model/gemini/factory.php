@@ -54,4 +54,19 @@ class Model_Gemini_Factory extends Model
         return $this->_client;
 
     }
+    
+    public function getUser()
+	{
+		$user = json_decode($this->_getGuzzleClient()->get('users.ashx/users/username/' . $this->_credentials['login'] . '?format=json')->send()->getBody(), true);
+		
+		if(is_null($user))
+			return false;
+			
+		return (object) array(
+			'user_id'	=> $user['UserID'],
+			'firstname'	=> $user['Firstname'],
+			'lastname'	=> $user['Surname'],
+			'fullname'	=> $user['Fullname']
+		);
+	}
 }
