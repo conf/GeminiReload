@@ -6,10 +6,15 @@ class Controller_Main extends Controller_Template {
     
     private $_factory;
     
+    public function before()
+    {
+    	parent::before();
+    	$this->session = Session::instance();
+    }
 	
     public function action_index()
 	{
-		if($this->_isLogin())
+		if($this->_isLoggedIn())
 		{
 			$this->template->user = $this->_getFactory()->getUser();
 		}
@@ -17,12 +22,14 @@ class Controller_Main extends Controller_Template {
 	
 	public function action_login()
 	{
-		if(!$this->_isLogin() && $this->request->post('username') && $this->request->post('apikey'))
+		if(!$this->_isLoggedIn() && $this->request->post('username') && $this->request->post('apikey'))
 		{
-			$this->session = Session::instance();
+			if(!$this->_getFactory($this->request->post('username'), $this->request->post('apikey'))->getUser())
+				$this->request->redirect('/');
+			
 			$this->session->set('username', $this->request->post('username'));
 			$this->session->set('apikey', $this->request->post('apikey'));
-			$this->session->set('is_login', true);
+			$this->session->set('is_logged_in', true);
 		}
 		
 		$this->request->redirect('/');
@@ -30,29 +37,26 @@ class Controller_Main extends Controller_Template {
 
 	public function action_logout()
 	{
-		Session::instance()->destroy();
+		$this->session->destroy();
 		$this->request->redirect('/');
 	}
 	
-	private function _getFactory()
+	private function _getFactory($username = false, $apikey = false)
 	{
 		if($this->_factory)
 			return $this->_factory;
 			
-		
-		$this->session = Session::instance();
-			
 		$credentials = array(
-            'login'		=> $this->session->get('username'),
-            'apikey'	=> $this->session->get('apikey')
+            'login'		=> $username ? $username : $this->session->get('username'),
+            'apikey'	=> $apikey ? $apikey : $this->session->get('apikey')
         );
         
 		$this->_factory = new Model_Gemini_Factory('http://tickets.bluefountainmedia.com', $credentials);
 		return $this->_factory;
 	}
 	
-	private function _isLogin()
+	private function _isLoggedIn()
 	{
-		return Session::instance()->get('is_login', false);
+		return $this->session->get('is_logged_in', false);
 	}
 }
