@@ -43,7 +43,7 @@ class Controller_Main extends Controller_Template {
 			
 			$this->session->set('username', $this->request->post('username'));
 			$this->session->set('apikey', $this->request->post('apikey'));
-			$this->session->set('is_login', true);
+			$this->session->set('is_logged', true);
 		}
 		
 		$this->request->redirect('/');
@@ -71,6 +71,6 @@ class Controller_Main extends Controller_Template {
 	
 	private function _isLogin()
 	{
-		return $this->session->get('is_login', false);
+		return $this->session->get('is_logged', false);
 	}
 }
