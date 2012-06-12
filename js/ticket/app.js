@@ -1,5 +1,5 @@
 // Provide module namespace
-core.provide("ticket.App")
+core.provide("ticket.App");
 core.provide("ticket.module.GetProjects");
 core.provide("ticket.module.GetTasks");
 core.provide("ticket.widget.LogPanel");

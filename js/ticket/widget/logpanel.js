@@ -17,7 +17,7 @@ ticket.widget.LogPanel = function() {
                     '<input type="text" placeholder="Comment" name="comment" id="comment">' +
                 '</div>' +
                 '<div class="b-log-panel__field">' +
-                    '<a class="b-log-panel__button" href="#/submit/">Log ime</a>' +
+                    '<a class="b-log-panel__button" href="#/submit/">Log time</a>' +
                 '</div>' +
             '</div>' +
             '<div class="b-log-panel__arrow"></div>' +

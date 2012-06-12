@@ -3,7 +3,7 @@
 <div class="b-auth">
 <?php if(Session::instance()->get('is_logged_in', false)): ?>
     <div class="b-auth__logout">
-        <span class="b-auth__user">Hello, <?php echo $user->fullname?></span>
+        <span class="b-auth__user">Hello, <?php echo html::chars($user->fullname);?></span>
         <a class="b-icon b-icon_type_logout" href="/logout/">Logout</a>
     </div>
 <?php else:?>
