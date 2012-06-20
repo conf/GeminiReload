@@ -114,10 +114,12 @@ Kohana::modules(array(
 
 Kohana::$config->load('routes');
 
-Route::set('default', '(<controller>(/<action>(/<id>)))')
+Route::set('default', '(<controller>(/<action>(/<id>)(.<format>)))')
 	->defaults(array(
 		'controller' => 'main',
 		'action'     => 'index',
+        'id'        => null,
+        'format'    => 'html'
 	));
 
 require_once APPPATH . '/vendor/guzzle.phar';
