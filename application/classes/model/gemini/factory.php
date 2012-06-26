@@ -29,14 +29,13 @@ class Model_Gemini_Factory extends Model
 
 	public function getProjects()
 	{
-		$gemini_projects = json_decode($this->_getGuzzleClient()->get('projects.ashx/projects?format=json')->send()->getBody(), true);
-		$projects = array();
-		foreach ($gemini_projects as $item) {
-			$projects[$item['ProjectID']] = $item;
-		}
-
-		return $projects;
+		return $this->sendRequest('projects.ashx/projects');
 	}
+
+    public function getIssueTimeTypes()
+    {
+        return $this->sendRequest('admin.ashx/issuetimetype');
+    }
 
     protected function _getGuzzleClient()
     {
@@ -49,6 +48,10 @@ class Model_Gemini_Factory extends Model
                     'gemini-api-token' => base64_encode($this->_credentials['apikey'])
                 )
             );
+
+            $cache_path = APPPATH . '/cache/response';
+            $cache = new Guzzle\Http\Plugin\CachePlugin(new Model_Gemini_Cache($cache_path), true);
+            $this->_client->getEventDispatcher()->addSubscriber($cache);
         }
 
         return $this->_client;
@@ -57,17 +60,11 @@ class Model_Gemini_Factory extends Model
     
     public function getUser()
 	{
-		try {
-			$user = json_decode($this->_getGuzzleClient()->get('users.ashx/users/username/' . $this->_credentials['login'] . '?format=json')->send()->getBody(), true);
-			
-			if(is_null($user))
-				throw new Exception('Undefined User');
-		}
-		catch (Exception $e)
-		{
-			return false;
-		}
-			
+        $user = $this->sendRequest('users.ashx/users/username/' . $this->_credentials['login']);
+
+		if(!$user)
+		    throw new Exception('Undefined User');
+
 		return (object) array(
 			'user_id'	=> $user['UserID'],
 			'firstname'	=> $user['Firstname'],
@@ -75,4 +72,12 @@ class Model_Gemini_Factory extends Model
 			'fullname'	=> $user['Fullname']
 		);
 	}
+
+    public function sendRequest($path)
+    {
+        $request = $this->_getGuzzleClient()->get($path . '?format=json');
+        $request->getParams()->set('cache.revalidate', 'skip');
+        $responseBody = $request->send()->getBody();
+        return json_decode($responseBody, true);
+    }
 }

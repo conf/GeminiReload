@@ -11,7 +11,6 @@ class Controller_Main extends Controller_Abstract {
 		}
 
         $this->template->user = $this->_getFactory()->getUser();
-        $this->template->projects = $this->_getFactory()->getProjects();
 	}
 	
 	public function action_login()

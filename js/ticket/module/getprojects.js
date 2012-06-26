@@ -27,7 +27,7 @@ ticket.module.GetProjects.prototype.init = function () {
  */
 ticket.module.GetProjects.prototype.buildUISelect = function (data) {
     this.clearOptionFormUISelect();
-    $.each(data, $.proxy(this, 'updateUISelect'));
+    $.each(data.projects, $.proxy(this, 'updateUISelect'));
     this.initUISelect();
     this.onUISelectChange();
 }
@@ -36,7 +36,7 @@ ticket.module.GetProjects.prototype.buildUISelect = function (data) {
  * updateUISelect
  */
 ticket.module.GetProjects.prototype.updateUISelect = function (index, option) {
-    $('<option value="' + option.id + '">' + option.title + '</option>').appendTo(this.select)
+    $('<option value="' + option.id + '">' + option.name + '</option>').appendTo(this.select)
 }
 
 /**

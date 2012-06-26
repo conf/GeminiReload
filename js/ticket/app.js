@@ -25,7 +25,7 @@ core.require(
              * @constructor
              */
             ticket.App = function() {
-                this.APP_PATH = "json/";
+                this.APP_PATH = "api/";
                 $('.b-log-time').bind('click', function(__event){
                     ticket.widget.LogPanel.CLASS.build(__event);
                     return false;
